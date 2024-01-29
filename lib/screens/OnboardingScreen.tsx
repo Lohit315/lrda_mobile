@@ -13,6 +13,9 @@ import LottieView from "lottie-react-native";
 import { setItem } from "../utils/async_storage";
 
 const { width, height } = Dimensions.get("window");
+const ANIMATION_HEIGHT = height * 0.3; // Adjust the 0.3 multiplier as needed
+const TEXT_SECTION_HEIGHT = height * 0.2; // Adjust this ratio as well
+
 
 type OnboardingProps = {
   navigation: any;
@@ -71,15 +74,17 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ navigation }) => {
       titleStyles={styles.title}
       subTitleStyles={styles.subtitle}
       containerStyles={{ paddingHorizontal: 15 }}
+      titleStyles={[styles.title, { height: TEXT_SECTION_HEIGHT }]}
+      subTitleStyles={[styles.subtitle, { height: TEXT_SECTION_HEIGHT }]}
+      containerStyles={{ paddingHorizontal: 15 }}
       pages={[
         {
           backgroundColor: "#a7f3d0",
           image: (
             <LottieView
               progress={lottieProgress}
-              style={{ width: width * 0.5, height: width }}
+              style={{ width: width * 0.5, height: ANIMATION_HEIGHT }}
               source={require("../../assets/animations/achieve.json")}
-              renderMode={"SOFTWARE"}
             />
           ),
           title: "The Ethnographer's Companion",
@@ -91,7 +96,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ navigation }) => {
           image: (
             <LottieView
               progress={lottieProgress}
-              style={{ width: width * 0.3, height: width }}
+              style={{ width: width * 0.5, height: ANIMATION_HEIGHT }}
               source={require("../../assets/animations/work.json")}
             />
           ),
@@ -104,7 +109,7 @@ const OnboardingScreen: React.FC<OnboardingProps> = ({ navigation }) => {
           image: (
             <LottieView
               progress={lottieProgress}
-              style={{ width: width * 0.3, height: width, marginLeft: 25 }}
+              style={{ width: width * 0.5, height: ANIMATION_HEIGHT }}
               source={require("../../assets/animations/boost.json")}
             />
           ),
@@ -173,6 +178,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: width,
   },
+  
   doneButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
